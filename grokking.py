@@ -18,4 +18,16 @@ def count_items(arr):
     else:
         return 0
 
-print(count_items([1, 2, 3, 5, 10]))
+#print(count_items([1, 2, 3, 5, 10]))
+
+#Find the maximum number in a list.
+
+def highest_in_list(arr):
+    if len(arr) > 1:
+        if arr[0] > arr[1]:
+            arr[1] = arr[0]
+        return highest_in_list(arr[1:])
+    else:
+        return arr[0]
+        
+print(highest_in_list([0, 5, 7, 11, 3]))

@@ -29,5 +29,22 @@ def highest_in_list(arr):
         return highest_in_list(arr[1:])
     else:
         return arr[0]
-        
-print(highest_in_list([0, 5, 7, 11, 3]))
+
+#print(highest_in_list([0, 5, 7, 11, 3]))
+
+"""Remember binary search from chapter 1? It’s a divide-and-conquer
+algorithm, too. Can you come up with the base case and recursive
+case for binary search?"""
+
+def binary(keyword, arr):
+    mid = len(arr) // 2
+    if arr[mid] == keyword:
+        return f"{keyword} found in list"
+    elif keyword < arr[mid]:
+        return binary(keyword, arr[:mid:])
+    elif keyword > arr[mid]:
+        return binary(keyword, arr[mid::])
+    else:
+        return f"{keyword} not in list"
+
+print(binary("giraffe", ["ant", "badger", "cat", "dog", "elephant", "ferret", "giraffe"]))

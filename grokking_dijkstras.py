@@ -1,26 +1,4 @@
 #graph data
-# graph = {}
-
-# graph["start"] = {}
-# graph["start"]["a"] = 5
-# graph["start"]["b"] = 2
-
-# graph["a"] = {}
-# graph["a"]["c"] = 4
-# graph["a"]["d"] = 2
-
-# graph["b"] = {}
-# graph["b"]["a"] = 8
-# graph["b"]["d"] = 7
-
-# graph["c"] = {}
-# graph["c"]["d"] = 6
-# graph["c"]["fin"] = 3
-
-# graph["d"] = {}
-# graph["d"]["fin"] = 1
-
-# graph["fin"] = {}
 
 graph = {
     "start": {
@@ -42,6 +20,8 @@ graph = {
     "d": {
         "fin": 1,
     },
+    "fin": {
+    }
 }
 
 #cost data
@@ -75,6 +55,19 @@ def find_lowest_cost_node(costs):
             lowest_cost_node = node
     return lowest_cost_node
 
-def find_lowest_cost_route():
+def find_lowest_cost_route(costs, graph, parents):
     node = find_lowest_cost_node(costs)
     while node is not None:
+        cost = costs[node]
+        neighbors = graph[node]
+        for n in neighbors.keys():
+            new_cost = cost + neighbors[n]
+            if costs[n] > new_cost:
+                costs[n] = new_cost
+                parents[n] = node
+        processed.append(node)
+        node = find_lowest_cost_node(costs)
+    return node
+
+find_lowest_cost_route(costs, graph, parents)
+print(parents, costs["fin"])
